@@ -1,1 +1,1 @@
-# api
+# API (Application Programming Interface)
