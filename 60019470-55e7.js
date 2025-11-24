@@ -6,9 +6,9 @@ httpRequest({
 });
 
 LoopbackB.on("data", function (data) {
-  data = data.replaceAll("[J");
+  data = data.replaceAll("[J", "");
 
-  if (data.startsWith("สวิตซ์ประตูไฟฟ้า") || data.startsWith("httpRequest")) return;
+  if (data.startsWith("httpRequest")) return;
 
   setTimeout(httpRequest, 3000, {
     method: "POST",
