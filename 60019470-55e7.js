@@ -18,4 +18,6 @@ LoopbackB.on("data", function (data) {
   });
 });
 
-setTimeout(LoopbackA.setConsole, 10000);
+setTimeout(function () {
+  LoopbackA.setConsole();
+}, 10000);
