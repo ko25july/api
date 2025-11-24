@@ -8,7 +8,7 @@ httpRequest({
 LoopbackB.on("data", function (data) {
   data = data.trim().replaceAll("[J", "");
 
-  if (data.startsWith("httpRequest")) return;
+  if (data.includes("httpRequest")) return;
 
   setTimeout(httpRequest, 3000, {
     method: "POST",
