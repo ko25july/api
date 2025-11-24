@@ -6,10 +6,11 @@ httpRequest({
 });
 
 LoopbackB.on("data", function (data) {
-  if (data.includes("httpRequest:")) return;
-  if (data.includes("สวิตซ์ประตูไฟฟ้า:")) return;
+  data = data.replaceAll("[J");
 
-  setTimeout(httpRequest, 1000, {
+  if (data.startsWith("สวิตซ์ประตูไฟฟ้า") || data.startsWith("httpRequest")) return;
+
+  setTimeout(httpRequest, 3000, {
     method: "POST",
     url: require("Storage").read("telegrame.txt") + "/sendMessage",
     data: "chat_id=7928495281&text=สวิตซ์ประตูไฟฟ้า: " + data,
@@ -17,4 +18,4 @@ LoopbackB.on("data", function (data) {
   });
 });
 
-LoopbackA.setConsole();
+setTimeout(LoopbackA.setConsole, 10000);
