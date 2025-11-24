@@ -6,7 +6,7 @@ httpRequest({
 });
 
 LoopbackB.on("data", function (data) {
-  data = data.replaceAll(" [J", "");
+  data = data.replaceAll("[J", "").trim();
 
   if (data.startsWith("httpRequest")) return;
 
