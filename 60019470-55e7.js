@@ -5,20 +5,11 @@ httpRequest({
   headers: { "Content-Type": "application/x-www-form-urlencoded" }
 });
 
-ws.on("open", function () {
+LoopbackB.on("data", function (data) {
   setTimeout(httpRequest, 1000, {
     method: "POST",
     url: require("Storage").read("telegrame.txt") + "/sendMessage",
-    data: "chat_id=7928495281&text=สวิตซ์ประตูไฟฟ้าไดัเริ่มการเชื่อมต่อแล้ว",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" }
-  });
-});
-
-ws.on("close", function () {
-  setTimeout(httpRequest, 1000, {
-    method: "POST",
-    url: require("Storage").read("telegrame.txt") + "/sendMessage",
-    data: "chat_id=7928495281&text=สวิตซ์ประตูไฟฟ้าได้หยุดการเชื่อมต่อแล้ว",
+    data: "chat_id=7928495281&text=สวิตซ์ประตูไฟฟ้า: " + data,
     headers: { "Content-Type": "application/x-www-form-urlencoded" }
   });
 });
