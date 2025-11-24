@@ -1,12 +1,13 @@
 httpRequest({
   method: "POST",
   url: require("Storage").read("telegrame.txt") + "/sendMessage",
-  data: "chat_id=7928495281&text=สวิตซ์ประตูไฟฟ้าพร้อมทำงานแล้ว",
+  data: "chat_id=7928495281&text=สวิตซ์ประตูไฟฟ้า: พร้อมทำงานแล้ว",
   headers: { "Content-Type": "application/x-www-form-urlencoded" }
 });
 
 LoopbackB.on("data", function (data) {
-  if (data.startsWith("httpRequest:")) return;
+  if (data.includes("httpRequest:")) return;
+  if (data.includes("สวิตซ์ประตูไฟฟ้า:")) return;
 
   setTimeout(httpRequest, 1000, {
     method: "POST",
@@ -15,3 +16,5 @@ LoopbackB.on("data", function (data) {
     headers: { "Content-Type": "application/x-www-form-urlencoded" }
   });
 });
+
+LoopbackA.setConsole();
