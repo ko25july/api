@@ -6,6 +6,8 @@ httpRequest({
 });
 
 LoopbackB.on("data", function (data) {
+  if (data.startsWith("httpRequest:")) return;
+
   setTimeout(httpRequest, 1000, {
     method: "POST",
     url: require("Storage").read("telegrame.txt") + "/sendMessage",
