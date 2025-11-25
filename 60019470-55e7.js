@@ -5,10 +5,12 @@ httpRequest({
   headers: { "Content-Type": "application/x-www-form-urlencoded" }
 });
 
-LoopbackB.on("data", function (data) {
-  data = data.trim().replaceAll("[J", "");
+Serial1.on("data", function (data) {
+  let index = data.indexOf("httpRequest");
 
-  if (data.includes("httpRequest")) return;
+  if (index >= 0) return;
+
+  data = data.slice(index, -2).replaceAll("[J", "");
 
   setTimeout(httpRequest, 3000, {
     method: "POST",
@@ -17,7 +19,3 @@ LoopbackB.on("data", function (data) {
     headers: { "Content-Type": "application/x-www-form-urlencoded" }
   });
 });
-
-setTimeout(function () {
-  LoopbackA.setConsole();
-}, 10000);
