@@ -5,7 +5,7 @@ httpRequest({
   headers: { "Content-Type": "application/x-www-form-urlencoded" }
 });
 
-LoopbackA.on("data", function (data) {
+LoopbackB.on("data", function (data) {
   if (data.includes("httpRequest")) return;
 
   data = data.slice(2, -2).replaceAll("[J", "");
